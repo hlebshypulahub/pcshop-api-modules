@@ -1,0 +1,4 @@
+rootProject.name = 'pcshop-api-modules'
+include 'producer'
+include 'consumer'
+
