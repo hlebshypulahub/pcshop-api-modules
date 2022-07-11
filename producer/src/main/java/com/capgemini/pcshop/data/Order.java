@@ -10,6 +10,9 @@ public class Order implements Serializable {
     private int orderId;
     private Collection<Integer> parts;
 
+    public Order() {
+    }
+
     public Order(Collection<Integer> parts) {
         this.parts = parts;
     }
@@ -36,5 +39,13 @@ public class Order implements Serializable {
 
     public void setParts(Collection<Integer> parts) {
         this.parts = parts;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", parts=" + parts +
+                '}';
     }
 }

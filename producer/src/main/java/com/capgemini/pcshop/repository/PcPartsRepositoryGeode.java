@@ -9,7 +9,6 @@ import org.apache.geode.cache.client.ClientRegionShortcut;
 import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +29,7 @@ public class PcPartsRepositoryGeode implements PcPartsRepository {
     }};
     List<Integer> keys = parts.stream().map(Part::getId).collect(Collectors.toList());
 
-    @PostConstruct
+//    @PostConstruct
     private void initRepository() {
         connectToGeode();
         addPartsToGeode();

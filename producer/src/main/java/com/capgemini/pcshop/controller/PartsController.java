@@ -3,6 +3,7 @@ package com.capgemini.pcshop.controller;
 import com.capgemini.pcshop.data.Order;
 import com.capgemini.pcshop.data.Part;
 import com.capgemini.pcshop.data.PartsMapper;
+import com.capgemini.pcshop.service.OrderService;
 import com.capgemini.pcshop.service.PartsService;
 import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -18,10 +19,12 @@ import java.util.List;
 public class PartsController {
 
     final PartsService partsService;
+    final OrderService orderService;
     final PartsMapper partsMapper;
 
-    public PartsController(PartsService partsService, PartsMapper partsMapper) {
+    public PartsController(PartsService partsService, OrderService orderService, PartsMapper partsMapper) {
         this.partsService = partsService;
+        this.orderService = orderService;
         this.partsMapper = partsMapper;
     }
 
@@ -47,8 +50,7 @@ public class PartsController {
 
     @PostMapping("order")
     public Order createOrder(@RequestBody Order order) {
-        order.generateOrderId();
-        return order;
+        return orderService.save(order);
     }
 
 }

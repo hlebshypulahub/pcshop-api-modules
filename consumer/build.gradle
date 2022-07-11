@@ -41,12 +41,6 @@ dependencies {
     testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-stub-runner:3.1.3'
 
     testImplementation 'org.springframework.cloud:spring-cloud-contract-stub-runner:3.1.3'
-
-//    testImplementation 'com.capgemini:producer:1.0-SNAPSHOT'
-//
-//    testImplementation files('C:/producer-1.0-SNAPSHOT-stubs.jar')
-//    testImplementation files('C:/producer-1.0-SNAPSHOT-plain.jar')
-//    testImplementation files('C:/producer-1.0-SNAPSHOT.jar')
 }
 
 test {

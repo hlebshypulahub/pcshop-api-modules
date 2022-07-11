@@ -8,6 +8,6 @@ public class PcPartsRepositoryConfig {
 
     @Bean
     public PcPartsRepository pcPartsRepository() {
-        return new PcPartsRepositoryGeode();
+        return new PcPartsRepositoryMock();
     }
 }
