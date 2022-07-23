@@ -10,4 +10,6 @@ public interface PcPartsRepository {
     List<Part> findAllParts();
 
     Part findByPartId(int partId);
+
+    List<Part> save(List<Part> parts);
 }

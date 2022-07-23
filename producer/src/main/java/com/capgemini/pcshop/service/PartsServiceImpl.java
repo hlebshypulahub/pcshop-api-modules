@@ -5,6 +5,7 @@ import com.capgemini.pcshop.repository.PcPartsRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
+import java.util.List;
 
 @Component
 public class PartsServiceImpl implements PartsService {
@@ -23,5 +24,10 @@ public class PartsServiceImpl implements PartsService {
     @Override
     public Part getPartById(int id) {
         return pcPartsRepository.findByPartId(id);
+    }
+
+    @Override
+    public List<Part> save(List<Part> parts) {
+        return pcPartsRepository.save(parts);
     }
 }

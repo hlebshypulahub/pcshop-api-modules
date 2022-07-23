@@ -19,14 +19,16 @@ import java.util.stream.Collectors;
 public class PcPartsRepositoryGeode implements PcPartsRepository {
 
     private Region<Integer, Part> region;
-    List<Part> parts = new ArrayList<Part>() {{
-        add(new Part(1, "Laptop", "48239523"));
-        add(new Part(2, "Keyboard", "2382234"));
-        add(new Part(3, "Mouse", "48239523"));
-        add(new Part(4, "Headphones", "2382234"));
-        add(new Part(5, "Monitor", "48239523"));
-        add(new Part(6, "Memory stick", "2382234"));
-    }};
+    List<Part> parts = new ArrayList<>() {
+//        {
+//        add(new Part(1, "Laptop", "48239523"));
+//        add(new Part(2, "Keyboard", "2382234"));
+//        add(new Part(3, "Mouse", "48239523"));
+//        add(new Part(4, "Headphones", "2382234"));
+//        add(new Part(5, "Monitor", "48239523"));
+//        add(new Part(6, "Memory stick", "2382234"));
+//    }
+    };
     List<Integer> keys = parts.stream().map(Part::getId).collect(Collectors.toList());
 
 //    @PostConstruct
@@ -49,11 +51,7 @@ public class PcPartsRepositoryGeode implements PcPartsRepository {
     }
 
     private void addPartsToGeode() {
-        Map<Integer, Part> mapOfParts = parts
-                .stream()
-                .collect(Collectors.toMap(Part::getId, Function.identity()));
-
-        region.putAll(mapOfParts);
+        save(parts);
     }
 
 
@@ -71,5 +69,16 @@ public class PcPartsRepositoryGeode implements PcPartsRepository {
         }
 
         throw new ResourceNotFoundException("Part not exists, id: " + partId);
+    }
+
+    @Override
+    public List<Part> save(List<Part> parts) {
+        Map<Integer, Part> mapOfParts = parts
+                .stream()
+                .collect(Collectors.toMap(Part::getId, Function.identity()));
+
+        region.putAll(mapOfParts);
+
+        return findAllParts();
     }
 }

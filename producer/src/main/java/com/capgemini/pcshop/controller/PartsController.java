@@ -13,7 +13,6 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.ArrayList;
 import java.util.List;
 
-/*TODO: List all parts as json */
 @RestController
 @RequestMapping("api/v1/parts")
 public class PartsController {
@@ -28,10 +27,10 @@ public class PartsController {
         this.partsMapper = partsMapper;
     }
 
-//    @GetMapping
-//    public String getParts() throws PartsMappingException {
-//        return partsMapper.toCollectionDto(partsService.getParts());
-//    }
+    @PostMapping
+    public List<Part> saveParts(@RequestBody List<Part> parts) {
+        return partsService.save(parts);
+    }
 
     @GetMapping("all")
     public List<Part> getParts() {
@@ -45,12 +44,10 @@ public class PartsController {
         } catch (ResourceNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
-
     }
 
     @PostMapping("order")
     public Order createOrder(@RequestBody Order order) {
         return orderService.save(order);
     }
-
 }

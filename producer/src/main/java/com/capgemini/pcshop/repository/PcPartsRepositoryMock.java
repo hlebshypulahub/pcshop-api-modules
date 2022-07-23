@@ -10,13 +10,15 @@ import java.util.List;
 @Component
 public class PcPartsRepositoryMock implements PcPartsRepository {
 
-    List<Part> parts = new ArrayList<Part>() {{
-        add(new Part(1, "Laptop", "48239523"));
-        add(new Part(2, "Keyboard", "2382234"));
-        add(new Part(3, "Mouse", "48239523"));
-        add(new Part(4, "Headphones", "2382234"));
-        add(new Part(5, "Monitor", "48239523"));
-    }};
+    List<Part> parts = new ArrayList<>() {
+//        {
+//        add(new Part(1, "Laptop", "48239523"));
+//        add(new Part(2, "Keyboard", "2382234"));
+//        add(new Part(3, "Mouse", "48239523"));
+//        add(new Part(4, "Headphones", "2382234"));
+//        add(new Part(5, "Monitor", "48239523"));
+//    }
+    };
 
     @Override
     public List<Part> findAllParts() {
@@ -30,5 +32,11 @@ public class PcPartsRepositoryMock implements PcPartsRepository {
                 .filter(part -> part.getId() == partId)
                 .findAny()
                 .orElseThrow(() -> new ResourceNotFoundException("Part not exists, id: " + partId));
+    }
+
+    @Override
+    public List<Part> save(List<Part> parts) {
+        this.parts.addAll(parts);
+        return parts;
     }
 }
